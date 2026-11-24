@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Character Studio</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#090914;
+color:white;
+padding:22px;
+}
+header{text-align:center;padding:25px 0}
+h1{font-size:30px;color:#a78bfa}
+header p{color:#aaa}
+.card{
+background:#171729;
+padding:22px;
+border-radius:18px;
+margin:18px 0;
+border:1px solid #343450;
+}
+label{display:block;margin:15px 0 8px}
+input,select,textarea{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #444;
+background:#101020;
+color:white;
+font-size:16px;
+}
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+border:0;
+border-radius:10px;
+background:linear-gradient(90deg,#7c3aed,#a855f7);
+color:white;
+font-size:17px;
+font-weight:bold;
+}
+#result{
+white-space:pre-wrap;
+color:#ddd;
+line-height:1.6;
+}
+footer{text-align:center;color:#777;margin-top:30px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>✦ AI Character Studio</h1>
+<p>Create your own virtual AI characters</p>
+</header>
+
+<div class="card">
+<h2>Create a character</h2>
+
+<label>Character name</label>
+<input id="name" placeholder="Enter a name">
+
+<label>Appearance</label>
+<select id="appearance">
+<option>Realistic</option>
+<option>Anime</option>
+<option>Fantasy</option>
+<option>Cyberpunk</option>
+</select>
+
+<label>Personality</label>
+<select id="personality">
+<option>Friendly</option>
+<option>Funny</option>
+<option>Confident</option>
+<option>Mysterious</option>
+<option>Creative</option>
+</select>
+
+<label>Character description</label>
+<textarea id="description" rows="4"
+placeholder="Describe your character..."></textarea>
+
+<button onclick="createCharacter()">Create Character ✨</button>
+</div>
+
+<div class="card">
+<h2>Your character</h2>
+<div id="result">Your character will appear here...</div>
+<button onclick="copyCharacter()">Copy Character</button>
+</div>
+
+<footer>AI Character Studio © 2026</footer>
+
+<script>
+let character = "";
+
+function createCharacter(){
+const name=document.getElementById("name").value;
+const appearance=document.getElementById("appearance").value;
+const personality=document.getElementById("personality").value;
+const description=document.getElementById("description").value;
+
+if(!name){
+alert("Please enter a character name!");
+return;
+}
+
+character=
+"Character: "+name+
+"\nAppearance: "+appearance+
+"\nPersonality: "+personality+
+"\nDescription: "+description;
+
+document.getElementById("result").textContent=character;
+}
+
+function copyCharacter(){
+if(!character){
+alert("Create a character first!");
+return;
+}
+navigator.clipboard.writeText(character)
+.then(()=>alert("Character copied!"))
+.catch(()=>alert("Copy is not available in this browser."));
+}
+</script>
+
+</body>
+</html>
